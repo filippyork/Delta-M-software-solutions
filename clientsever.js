@@ -1,0 +1,9 @@
+function newaccount ()
+{
+
+}
+function checkuserinfo ()
+{
+    
+
+}

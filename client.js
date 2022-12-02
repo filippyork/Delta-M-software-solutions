@@ -14,7 +14,7 @@ function createNewAccount(){
         {
             userpfp = $("#myFile").prop('files')[0]
         }else{
-            userpfp = "default"
+            userpfp = "default" //probably not the best way to do this.
         }
 
         //TODO Send newuser json packet to server defining the new user (username, password, image)
@@ -29,4 +29,7 @@ function addToShareDiary(){
 }
 
 //Opendiary
+
+
+
 

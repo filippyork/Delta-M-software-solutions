@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>sign up!</title>
+</head>
+<body>
+    <div id="topbar"></div>
+    <br>
+    <h1>New Account</h1>
+    <div id="formbox">
+        
+        <fieldset >
+            <legend><h3>welcome!</h3></legend>
+            <img src="images/profileplaceholer.png"   id="photodisplay" alt="uploadphoto" height="100px" width="100px">
+            <br>
+            <input type="file" id="myFile" name="filename">
+             <input type="submit">
+  
+
+        <!-- User info input-->
+        <p> Username:<input type="text" id="username" name="username" size="15" maxlength="32">
+        </p>
+        <p> password:<input type="password" id="password" name="username" size="15" maxlength="32">
+        </p>
+        <p> re-enter password:<input type="password" id="repassword" name="username" size="15" maxlength="32">
+        </p>
+    
+      
+        <P>
+        <button onclick="createNewAccount()">Create Account</button><!-- This is the createaccount button-->
+             </P>
+    </div>
+    <footer>
+        <hr>
+       <h6>&copy Delta M software solutions</h6> 
+    </footer>
+</body>
+</html>

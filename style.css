@@ -1,0 +1,96 @@
+#topbar{
+    height: 30px;
+    width: 1020px;
+    background-color: aqua;
+    overflow:inherit;
+    text-align: right;
+}
+/* index pages */
+ #mainleft
+ {
+    width: 510px;
+    height: 1000px;
+    background-color: tomato;
+    float: left;
+
+ }
+ #mainright{
+    width: 510px;
+    height: 1000px;
+    background-color: rgb(4, 138, 27);
+    float: left;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ }
+ /* #mainright, #mainleft{
+    width: 510px;
+    height: 1000px;
+    float: left;
+ } */
+ .indexbody {
+    margin:0 ; 
+     float: left; 
+    float: right;
+   
+    /* width: 1000px;} */
+ }
+ /* open diary page */
+ .outerbox
+ {
+  height: 2000px;
+  width: 1020px;
+  /* background-color: #199319; */
+  background-image: url("images/diaryfront.jpg");
+  text-align: center;
+
+   
+ }
+ #innerbox{
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  text-align: center;
+ }
+ /* text button */
+ .fcc-btn {
+   background-color: #199319;
+   color: white;
+   padding: 15px 25px;
+   text-decoration: none;
+ }
+ /* diary editing  */
+ .main {
+   height: 2000px;
+   width: 1020px;
+   background-color: #199319;
+ }
+ .editingtools{
+  height: 25px;
+  width: 1020px;
+  background-color: blue;
+ }
+ .editingbox{
+  width: 1020px;
+  height: 2000px;
+ }
+ /* goodby page */
+ .goodbydiv{
+  height: 2000px;
+  width: 1020px;
+  background-color: #199319;
+ }
+ /* signup page */
+ #formbox {
+  
+  background-color: #199319;
+  display:flex;
+  justify-content: center;
+ }
+ fieldset{
+  background-color: #25a1e9;
+  display:flex;
+  justify-content: center;
+ }
+ 
+
+ 

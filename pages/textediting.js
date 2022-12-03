@@ -24,7 +24,7 @@ $('#editingbox').each(function(){
             'username' : username
         }), response
     )
-    console.log(diarytitle)
+
 }
 
 function response(data, status){
@@ -33,6 +33,23 @@ function response(data, status){
     if(response['action']=='diaryreturn'){
         totalpagedata = response['diarydata']
     }
+    if(response['action']=='confirmdiarysave'){
+        console.log("Saved page data redirecting to goodbye page")
+        window.location.href ="./goodbypage.html?diarytitle="+diarytitle +"&username=" + username
+    }
+}
+
+
+
+function saveButton(){
+    $.post(
+        url+'?data='+JSON.stringify({
+            'action' : 'savediary',
+            'diarytitle' : diarytitle,
+            'diarydata' : totalpagedata,
+            'username' : username
+        }), response
+    )
 }
 //Clears the Text
 function cleartext(){

@@ -91,5 +91,13 @@ app.post('/post',(req,res) => {
         })
         res.send(jsontext)
     }
+    if(parsed['action'] == 'diaryreturn'){
+        console.log(parsed['diarydata'])
+        db[parsed['username']].diary[parsed['diarytitle']] = parsed['diarydata']
+        jsontest = JSON.stringify({
+            'action' : 'confirmdiarysave'
+        })
+        res.send(jsontext)
+    }
 }).listen(port)
 console.log("listening on" + port)

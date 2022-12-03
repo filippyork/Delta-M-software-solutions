@@ -12,21 +12,21 @@
 <body>
     <div id="topbar"><a class="fcc-btn" href="goodbypage.html">logout</a></div>
     <div class="editingtools"><button onclick="cleartext()">CLEAR</button>
-        <label for="pet-select">Choose a color:</label>
 
-        <select name="pets" id="color-select">
+        <label for="color-select">Choose a color:</label>
+        <select id="color-select" onmousedown="this.value" onchange="colorfunc(this.value)">
             <option value="">--Please choose an option--</option>
             <option value="blue">blue</option>
             <option value="black">black</option>
             <option value="red">red</option>
             <option value="green">green</option>
-            <option value="yellow">yellow</option>
+            <option value="pink">pink</option>
             <option value="purple">purple</option>
         </select>
 
 
-        <label for="pet-select">Choose font size:</label>
-        <select id="text-select">
+        <label for="text-select">Choose font size:</label>
+        <select id="text-select" onmousedown="this.value" onchange="sizefunc(this.value)">
             <option value="7pt">--Please choose an option--</option>
             <option value="7pt">7pt</option>
             <option value="8pt">8pt</option>
@@ -34,6 +34,7 @@
             <option value="12pt">12pt</option>
             <option value="18pt">18pt</option>
             <option value="26pt">26pt</option>
+            <option value="50pt">50pt</option>
         </select>
 
     </div>

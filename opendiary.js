@@ -47,9 +47,6 @@ function response(data, status){
 
 // creates buttons for each diary the current user has created
 function diaryButtons() {
-
-    /* server side will check whether current entry in MyDiary contains 
-    the current user's username, an updates the diary title if this is true */
     
     /* if no entries exist for current user (e.g. new user), add a new diary option */
     if (titlelist.length == 0) {

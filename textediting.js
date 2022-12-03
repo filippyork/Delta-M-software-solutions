@@ -1,8 +1,15 @@
 //all of the diary data
-var totalpagedata = "";
+var totalpagedata = [];
 
 //page count
 var pagecounter = 1;
+
+
+//last page
+var lastpage = 1;
+
+
+
 
 
 //Load the editable div for the user:
@@ -12,7 +19,7 @@ $('#editingbox').each(function(){
     this.contentEditable = true;
 });
 
-timeout = setTimeout(changecolor, 1000);
+timeout = setTimeout(1000);
 
 }
 
@@ -53,20 +60,7 @@ function sizefunc(value){
 //New page function
 function newpage(){
 
-//store the data as a string
-var editingbox = document.getElementById("editingbox");
-
-//the ^ means end of a page
-totalpagedata = totalpagedata + editingbox.innerHTML + "^" + pagecounter.toString();
-
-
-
-//remove text
-editingbox.innerHTML = "";
-
-
-
-     //increent page counter
+     //increment page counter
      pagecounter = pagecounter + 1
 
     //create new option in pageselect
@@ -77,43 +71,22 @@ editingbox.innerHTML = "";
 
     pageselect.appendChild(newoption);
 
-
-    
-
-//add a blank new page to the total amount of pages. save previous page
-
-
 }
 
-function pagefunc(value){
+function pagefunc(currentpage){
 
 var editingbox = document.getElementById("editingbox");    
 
-var v = value - 1;
-
-var prevtemp = totalpagedata.indexOf(v.toString())
-
-var value2 = "^"+value.toString();
-
-var temp = totalpagedata.indexOf(value2.toString());
-
-if(temp == -1){
-
-    editingbox.innerHTML = ""
-    
-} else if (temp != -1) {
-
-    editingbox.innerHTML = ""
-
-for(var i = prevtemp+1; i <= temp-1; i = i + 1){
 
 
-    editingbox.innerHTML = editingbox.innerHTML + totalpagedata[i]
+//editingbox.innerHTML = totalpagedata[value+1]
 
 
 
-}
 
-}
+
+
+
+
 
 }

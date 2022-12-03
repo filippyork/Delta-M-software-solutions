@@ -18,8 +18,24 @@ function response(data, status){
     }
 }
 
-// MADE WITH MULTIPLE DIARIES IN MIND
-function toEditing(){
-    window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
+// creates buttons for each diary the current user has created
+function diaryButtons() {
+
+    /* server side will check whether current entry in MyDiary contains 
+    the current user's username, an updates the diary title if this is true */
+
+    // creates a button to redirect to selected page
+    var diaryButton = document.createElement('BUTTON');
+    var diarytext = document.createTextNode(diarytitle);
+    diaryButton.appendChild(diarytext);
+    diaryButton.id = diarytitle;
+
+    // when this button is clicked, send user to corresponding page
+    diaryButton.onclick = toEditing(diarytitle);
+
 }
-//TODO for viewing mutliple 
+
+// MADE WITH MULTIPLE DIARIES IN MIND
+function toEditing(diarytitle){
+    window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle;
+}

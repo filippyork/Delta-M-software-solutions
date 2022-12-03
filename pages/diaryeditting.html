@@ -5,41 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>my diary</title>
+    <script src="textediting.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="topbar"><a class="fcc-btn" href="goodbypage.html">logout</a></div>
-    <div class="editingtools"><button onclick="bold()">bold</button><button onclick="intalic()">intalic</button><button onclick="clear()">clear</button>
-        <label for="pet-select">Choose a color:</label>
-
-        <select name="pets" id="color-select">
-            <option value="">--Please choose an option--</option>
-            <option value="">blue</option>
-            <option value="">black</option>
-            <option value="">red</option>
-            <option value="">green</option>
-            <option value="">yellow</option>
-            <option value="purple">purple</option>
-        </select>
+    <div id="topbar">
+        
+        <a href="goodbypage.html"><button id="saebutton">Save and Exit</button></a>
     
     </div>
 
-    <div class="editingbox">
-        <textarea id="textarea1" 
-                              class="input shadow" 
-                              name="name" 
-                              rows="15" 
-                              cols="100" 
-                              placeholder="Your text here ">
-                              
-                    </textarea>
+    <div class="editingtools"><button onclick="cleartext()">CLEAR</button>
+
+        <label for="color-select">Choose a color:</label>
+        <select id="color-select" onmousedown="this.value" onchange="colorfunc(this.value)">
+            <option value="">--Please choose an option--</option>
+            <option value="blue">blue</option>
+            <option value="black">black</option>
+            <option value="red">red</option>
+            <option value="green">green</option>
+            <option value="pink">pink</option>
+            <option value="purple">purple</option>
+        </select>
+
+
+        <label for="text-select">Choose font size:</label>
+        <select id="text-select" onmousedown="this.value" onchange="sizefunc(this.value)">
+            <option value="7pt">--Please choose an option--</option>
+            <option value="7pt">7pt</option>
+            <option value="8pt">8pt</option>
+            <option value="9pt">9pt</option>
+            <option value="12pt">12pt</option>
+            <option value="18pt">18pt</option>
+            <option value="26pt">26pt</option>
+            <option value="50pt">50pt</option>
+        </select>
+
+    </div>
+
+    <div id="editingbox">
+        
     </div>
 
     <div class="buttonspages">
 
         <div class="center">
-            <button class="backbutton"><--Previouse page</button>            <button class="nextbutton">Next page--></button>
+            
+                 <button id="newpagebtn" onclick="newpage()">NEW page</button>          
+                  
+                 <label for="page-select" id="page-selectlabel">Choose page access:</label>
+        <select id="page-select" onmousedown="this.value" onchange="pagefunc(this.value)">
+            <option value="1">1</option>
+      
+        </select>
+
           </div>
     
 </div>
@@ -48,6 +68,8 @@
     <footer>
         <hr>
        <h6>&copy Delta M software solutions</h6> 
+        <h1 id="pagenums"></h1>
+
     </footer>
 </body>
 </html>

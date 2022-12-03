@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 var port = 3000
-var db = {'Admin':{password:'root', diary:{title : 'Admins Diary', data : []}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
+// must change the setup for diary storage
+var db = {'Admin':{password:'root', diary:{'Admins Diary': '<hr> Hello there </hr>'}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
 app.post('/post',(req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log("New express client")
@@ -80,6 +81,15 @@ app.post('/post',(req,res) => {
         })
         res.send(jsontext)
         
+    }
+    if(parsed['action']=='diaryfetch'){
+        console.log( parsed['diarytitle'])
+        jsontext = JSON.stringify({
+            'action' : 'diaryreturn',
+            'diarydata' : db[parsed['username']].diary[parsed['diarytitle']]
+
+        })
+        res.send(jsontext)
     }
 }).listen(port)
 console.log("listening on" + port)

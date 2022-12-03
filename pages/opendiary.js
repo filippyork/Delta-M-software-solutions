@@ -1,3 +1,4 @@
+var diarytitle = 'Admins Diary'
 const username = new URLSearchParams(window.location.search).get('username')
 var url ="http://localhost:3000/post"
 window.onload = function() {
@@ -17,4 +18,8 @@ function response(data, status){
     }
 }
 
+// MADE WITH MULTIPLE DIARIES IN MIND
+function toEditing(){
+    window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
+}
 //TODO for viewing mutliple 

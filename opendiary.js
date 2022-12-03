@@ -85,7 +85,7 @@ function toEditing(diarytitle){
     window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle + "&username=" + username;
 }
 
-// create new diary if the person does not have one
+// create a new diary if the person does not have one
 function newDiary() {
 
     // prompt user to enter title

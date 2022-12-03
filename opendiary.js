@@ -10,7 +10,7 @@ window.onload = function() {
     );
 }
 
-function noExistingDiary(){
+function noExistingDiary(diarytitle){
     $.post(
         url+"?data="+JSON.stringify({
             'action' : 'createnewdict',

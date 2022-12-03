@@ -9,7 +9,9 @@ function addToShareDiary(){
     // Maybe update picture if it found the person and add a confirm button? just would look better.
     $.post(url+'?data='+JSON.stringify({
         'action' : 'usercheck',
+        'username' : username,
         'shareuser' : $("#addperson").val(),
+        'diarytitle' : diarytitle
     }),response)
 }
 

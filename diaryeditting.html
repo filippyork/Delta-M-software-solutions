@@ -10,7 +10,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="topbar"><a class="fcc-btn" href="goodbypage.html">logout</a></div>
+    <div id="topbar">
+        
+        <a href="goodbypage.html"><button id="saebutton">Save and Exit</button></a>
+    
+    </div>
+
     <div class="editingtools"><button onclick="cleartext()">CLEAR</button>
 
         <label for="color-select">Choose a color:</label>
@@ -46,9 +51,15 @@
     <div class="buttonspages">
 
         <div class="center">
-            <button id="backbutton" onclick="backbtn()"><--Previouse page</button>
+            
                  <button id="newpagebtn" onclick="newpage()">NEW page</button>          
-                  <button id="nextbutton" onclick="nextbtn()">Next page--></button>
+                  
+                 <label for="page-select" id="page-selectlabel">Choose page access:</label>
+        <select id="page-select" onmousedown="this.value" onchange="pagefunc(this.value)">
+            <option value="1">1</option>
+      
+        </select>
+
           </div>
     
 </div>
@@ -57,6 +68,8 @@
     <footer>
         <hr>
        <h6>&copy Delta M software solutions</h6> 
+        <h1 id="pagenums"></h1>
+
     </footer>
 </body>
 </html>

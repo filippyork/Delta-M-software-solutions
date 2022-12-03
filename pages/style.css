@@ -1,163 +1,163 @@
 #topbar{
-    height: 40px;
-    width: 1024px;
-    background-color: rgb(0, 83, 190);
-    overflow: hidden;
-    text-align: right;
+  height: 40px;
+  width: 1024px;
+  background-color: rgb(0, 83, 190);
+  overflow: hidden;
+  text-align: right;
 }
 footer {
-  background-color: rgb(0, 83, 190);
-  height: 50px;
-  width: 1024px;
-  text-align: center;
+background-color: rgb(0, 83, 190);
+height: 50px;
+width: 1024px;
+text-align: center;
 }
 button {
-  margin: 10px;
-  pad: 1px,1px,1px,1px;
-  background-color: #00000093;
-  border: 0;
-  color: #ffffff ;
+margin: 10px;
+pad: 1px,1px,1px,1px;
+background-color: #00000093;
+border: 0;
+color: #ffffff ;
 }
 /* button */
 .fcc-btn {
-  background-color: rgb(75, 75, 75);
-  color: white;
-  padding: 15px 25px;
-  text-decoration: none;
+background-color: rgb(75, 75, 75);
+color: white;
+padding: 15px 25px;
+text-decoration: none;
 }
 h1{
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+color: #ffffff;
+font-family: Arial, Helvetica, sans-serif;
 }
 /* indexpage */
- #mainleft
- {
-    width: 510px;
-    height: 1000px;
-    background-color: tomato;
-    float: left;
-
- }
- #mainright{
-    width: 510px;
-    height: 1000px;
-    background-color: rgb(75, 75, 75);
-    overflow: auto;
-    text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
- }
- 
- body {
-   margin-left: 10%;
-   margin-right: 10%; 
-   background-color: rgb(36, 36, 36);
-   
-    /* width: 1000px;} */
- }
- 
-/* opendiarypage */
- .otterbox {
-   height: 2000px;
-   width: 1024px;
-   background-color: #199319;
-
- }
- #innerbox{
-  color: #ffffff;
-   height: 900px;
-   width: 1020px;
-   /* background-color: blue; */
-   background-image: url("images/diary_PNG5font.png");
-   background-repeat: no-repeat;
-   background-size: contain;
-   text-align: center;
-   padding-top: 400px;
- }
- .main {
-   height: 1000px;
-   width: 1024px;
-   background-color: #931983;
- }
- /* share diary page */
- .shareContainerDiv{
-  text-align: center;
+#mainleft
+{
+  width: 510px;
   height: 1000px;
-  width: 1024px;
-  background-color: #017de27c;
+  background-color: tomato;
+  float: left;
+
+}
+#mainright{
+  width: 510px;
+  height: 1000px;
+  background-color: rgb(75, 75, 75);
+  overflow: auto;
   text-align: center;
-  margin-bottom: 0px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+body {
+ margin-left: 10%;
+ margin-right: 10%; 
+ background-color: rgb(36, 36, 36);
  
- }
- .sharerinner{
-  border: 1px solid black;
-  background-color: lightblue;
-  padding-top: 50px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-  padding-left: 30px;
-  margin: auto;
-  
-  
-  height: 500px;
-  width: 400px;
-  background-color: grey;
- }
- /* disaryeditting page */
- .buttonspages{
-  height: 20px;
-  width: 1018px;
-  position: relative;
-  border: 3px solid green; 
- }
- .center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  /* width: 1000px;} */
+}
+
+/* opendiarypage */
+.otterbox {
+ height: 2000px;
+ width: 1024px;
+ background-color: #199319;
+
+}
+#innerbox{
+color: #ffffff;
+ height: 900px;
+ width: 1020px;
+ /* background-color: blue; */
+ background-image: url("images/diary_PNG5font.png");
+ background-repeat: no-repeat;
+ background-size: contain;
+ text-align: center;
+ padding-top: 400px;
+}
+.main {
+ height: 1000px;
+ width: 1024px;
+ background-color: #931983;
+}
+/* share diary page */
+.shareContainerDiv{
+text-align: center;
+height: 1000px;
+width: 1024px;
+background-color: #017de27c;
+text-align: center;
+margin-bottom: 0px;
+
+}
+.sharerinner{
+border: 1px solid black;
+background-color: lightblue;
+padding-top: 50px;
+padding-right: 30px;
+padding-bottom: 50px;
+padding-left: 30px;
+margin: auto;
+
+
+height: 500px;
+width: 400px;
+background-color: grey;
+}
+/* disaryeditting page */
+.buttonspages{
+height: 20px;
+width: 1018px;
+position: relative;
+border: 3px solid green; 
+}
+.center {
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
 }
 .editingtools
 {
-  height: 30px;
-  width: 1024px;
-  background-color: rgb(133, 216, 255);
-  overflow: auto;
-  text-align: center;
+height: 30px;
+width: 1024px;
+background-color: rgb(133, 216, 255);
+overflow: auto;
+text-align: center;
 }
 #editingbox
 {
-  height: 800px;
-  width: 1024px;
-  background-color: lightcyan;
-  
+height: 800px;
+width: 1024px;
+background-color: lightcyan;
+
 }
 #textarea1
 {
-  height: 797px;
-  width: 1016px;
+height: 797px;
+width: 1016px;
 }
 /* buttons */
 #editingtool{
-  background-color: #071ee6;
-  color: white;
-  padding: 13px 15px;
-  text-decoration: none;
+background-color: #071ee6;
+color: white;
+padding: 13px 15px;
+text-decoration: none;
 }
 /* new accountpage */
 #formbox{
-  background-color: rgb(75, 75, 75);
-  color: #ffffff;
-  text-align: center;
-  overflow: hidden;
-  height: 600px;
-  width: 1020px;
+background-color: rgb(75, 75, 75);
+color: #ffffff;
+text-align: center;
+overflow: hidden;
+height: 600px;
+width: 1020px;
 }
 fieldset{
-  padding-top: 30px;
-  padding-right: 20px;
-  padding-bottom: 30px;
-  padding-left: 20px;
+padding-top: 30px;
+padding-right: 20px;
+padding-bottom: 30px;
+padding-left: 20px;
 }
 
 #originalusername {
@@ -168,24 +168,24 @@ text-align: center;
 
 #originalpassword {
 
-  text-align: center;
-  
-  }
+text-align: center;
+
+}
 
 #changepasswordbutton{
 
-  padding: 10px;
-  background-color: white;
-  color: black;
-  font-weight: 800;
+padding: 10px;
+background-color: white;
+color: black;
+font-weight: 800;
 
 }
 
 div.editable {
-  width: 300px;
-  height: 200px;
-  border: 1px solid #ccc;
-  padding: 5px;
+width: 300px;
+height: 200px;
+border: 1px solid #ccc;
+padding: 5px;
 }
 
 #page-selectlabel {

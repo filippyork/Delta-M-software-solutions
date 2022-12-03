@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="indexstyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="client.js"></script>
     <title>My diary page</title>
 </head>
@@ -17,13 +18,13 @@
         <fieldset>
             <legend><h1>welcome!</h1></legend>
         
-        <p> Username:<input type="text" name="username" size="15" maxlength="32">
+        <p> Username:<input type="text" name="usernamelog" id="usernamelog"size="15" maxlength="32">
         </p>
-        <p> password:<input type="text" name="password" size="15" maxlength="32">
+        <p> password:<input type="text" name="passwordlog" id="passwordlog" size="15" maxlength="32">
         </p>
         <p><h5><a href="#">Forgot my password</a></h5></p>
         <p>
-            <input type="submit" name="loginbtrn" onclick="checkuserinfo()">
+            <input type="submit" name="loginbtrn" onclick="indexlogin()">
         </p>
     </fieldset>
     </div>

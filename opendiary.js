@@ -25,19 +25,34 @@ function diaryButtons() {
 
     /* server side will check whether current entry in MyDiary contains 
     the current user's username, an updates the diary title if this is true */
+    
+    /* if no entries exist for current user (e.g. new user), add a new diary option */
+    if (titlelist.length == 0) {
+        var diaryButton = document.createElement('BUTTON');
+        var diarytext = document.createTextNode("Create a New Diary");
+        diaryButton.appendChild(diarytext);
+        diaryButton.id = diarytitle;
+    }
 
-    // creates a button to redirect to selected page
-    var diaryButton = document.createElement('BUTTON');
-    var diarytext = document.createTextNode(diarytitle);
-    diaryButton.appendChild(diarytext);
-    diaryButton.id = diarytitle;
+    else {
 
-    // when this button is clicked, send user to corresponding page
-    diaryButton.onclick = toEditing(diarytitle);
+        for (username in titlelist) {
+            // creates a button to redirect to selected page
+            var diaryButton = document.createElement('BUTTON');
+            var diarytext = document.createTextNode(diarytitle);
+            diaryButton.appendChild(diarytext);
+            diaryButton.id = diarytitle;
+        
+            // when this button is clicked, send user to corresponding page
+            diaryButton.onclick = toEditing(diarytitle);    
+
+        }
+
+    }
 
 }
 
 // MADE WITH MULTIPLE DIARIES IN MIND
 function toEditing(diarytitle){
-    window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle;
+    window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle + "&username=" + username;
 }

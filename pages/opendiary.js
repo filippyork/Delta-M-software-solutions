@@ -14,7 +14,8 @@ function response(data, status){
     var response = JSON.parse(data)
     console.log(data)
     if(response['action']=='titlereturn'){
-        $("#diaryname").text(response['title'] +" by: "+username)
+        titlelist = response['titlelist']
+        console.log(titlelist)
     }
 }
 

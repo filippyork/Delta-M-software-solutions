@@ -75,9 +75,13 @@ app.post('/post',(req,res) => {
         res.send(jsontext)
     }
     if(parsed['action']=='titlerequest'){
+        let keytemp = []
+        for(let [key,value] of Object.entries(db[parsed['username']].diary)){
+            keytemp.push(key)
+        }
         jsontext = JSON.stringify({
             'action' : 'titlereturn',
-            'title' : db[parsed['username']].diary.title
+            'titlelist' : keytemp
         })
         res.send(jsontext)
         

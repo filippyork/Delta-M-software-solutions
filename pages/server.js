@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var port = 3000
-var db = {'Admin':{password:'root', diary:'', imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
+var db = {'Admin':{password:'root', diary:{title : 'Admins Diary', data : []}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
 app.post('/post',(req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log("New express client")
@@ -52,7 +52,8 @@ app.post('/post',(req,res) => {
        var jsontext = JSON.stringify({ // curating response for login request
             'action' : 'loginresponse',
             'success' : loginsuccess,
-            'username' : parsed['username']
+            'username' : parsed['username'],
+            'pfp' : db[parsed['username']].pfp
        })
        res.send(jsontext) // sending login request response
     }
@@ -60,15 +61,25 @@ app.post('/post',(req,res) => {
     if(parsed['action']=='usercheck'){
         exists = db[parsed['shareuser']]!=null?true:false;
         console.log("Username ${parsed['shareuser']} exists: " + exists)
-        if(exists){
-            //TODO add cur users dictionary to share user.
-        }
-        jsontext = JSON.stringify({
+        jsontext = {
             'action' : 'shareresponse',
             'shared' : exists,
-            'shareduserphoto' : db[parsed['shareuser']].imgurl
+        }
+        if(exists){
+            jsontext['shareduserphoto']= db[parsed['shareuser']].imgurl
+            //TODO add cur users dictionary to share user.
+
+        }
+        jsontext = JSON.stringify(jsontext)
+        res.send(jsontext)
+    }
+    if(parsed['action']=='titlerequest'){
+        jsontext = JSON.stringify({
+            'action' : 'titlereturn',
+            'title' : db[parsed['username']].diary.title
         })
         res.send(jsontext)
+        
     }
 }).listen(port)
 console.log("listening on" + port)

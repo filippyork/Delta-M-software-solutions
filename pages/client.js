@@ -1,6 +1,7 @@
 
 //TODO figure out format for the pages.js, either one js doc with easy globals for usernames and such, or multiple that make a login request based off of cookies? (sounds complicated)
-var username
+
+var username = new URLSearchParams(window.location.search).get('username')
 
 var url = "http://localhost:3000/post"
 //Signuppage
@@ -43,7 +44,6 @@ function addToShareDiary(){
     $.post(url+'?data='+JSON.stringify({
         'action' : 'usercheck',
         'shareuser' : $("#addperson").val(),
-        'username' : username //finish this username functionality, perhaps a global? 
     }),response)
 }
 
@@ -80,15 +80,16 @@ function response(data, status){
         }
         else{
             console.log("Account created")
-            window.location.href = "./index.html"
+            window.location.href = "./index.html?username="+username
             //TODO post redirect logic for changing username and such?
         }
     }
     if(response['action']=='loginresponse'){
         if(response['success']){
             console.log("Login success")
-            window.location.href = "./opendiary.html"
-            username = reponse['username']
+            window.location.href = "./opendiary.html?username="+username
+            //Local storage for transfer between pages
+            
             //TODO extra logic for login if needed?
         }
         else{

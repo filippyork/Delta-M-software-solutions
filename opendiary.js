@@ -1,6 +1,6 @@
-var diarytitle = 'Admins Diary' // needs to be changed
-const username = new URLSearchParams(window.location.search).get('username')
-var url ="http://localhost:3000/post"
+var diarytitle;
+const username = new URLSearchParams(window.location.search).get('username');
+var url = "http://localhost:3000/post";
 window.onload = function() {
     $.post(
         url+'?data='+JSON.stringify({
@@ -10,13 +10,38 @@ window.onload = function() {
     );
 }
 
+function noExistingDiary(){
+    $.post(
+        url+"?data="+JSON.stringify({
+            'action' : 'createnewdict',
+            'title' : diarytitle,
+            'username' : username
+        }),response
+    )
+}
+
 function response(data, status){
-    var response = JSON.parse(data)
-    console.log(data)
-    if(response['action']=='titlereturn'){
-        titlelist = response['titlelist']
-        console.log(titlelist)
-        //titlelist is the list of titles recieved from the server.
+    
+    var response = JSON.parse(data);
+    console.log(data);
+
+    if (response['action']=='titlereturn') {
+        
+        //titlelist is the list of titles recieved from the server
+        titlelist = response['titlelist'];
+        console.log(titlelist);
+    }
+    
+    if (response['action']=='createresponse') {
+        
+        if (response['success']) {
+            window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle + "&username=" + username;
+        }
+        
+        else {
+            alert("Diary name already exists!");
+        }
+        
     }
 }
 
@@ -31,7 +56,10 @@ function diaryButtons() {
         var diaryButton = document.createElement('BUTTON');
         var diarytext = document.createTextNode("Create a New Diary");
         diaryButton.appendChild(diarytext);
-        diaryButton.id = diarytitle;
+        
+        // upon clicking this button, create a new diary
+        diaryButton.onclick = (newDiary);
+
     }
 
     else {
@@ -55,4 +83,17 @@ function diaryButtons() {
 // MADE WITH MULTIPLE DIARIES IN MIND
 function toEditing(diarytitle){
     window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle + "&username=" + username;
+}
+
+// create new diary if the person does not have one
+function newDiary() {
+
+    // prompt user to enter title
+    diarytitle = prompt("Enter a title:");
+
+    // create new diary, send title of first page
+    noExistingDiary(diarytitle);
+
+    // redirect user to diary editing page
+    toEditing(diarytitle);
 }

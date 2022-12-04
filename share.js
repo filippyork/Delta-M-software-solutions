@@ -38,15 +38,11 @@ function response(data,status){
 
 
 //TODO server side, search the user and match someone with the correct entered credentials
-function adduser(){
-
+function searchuser(){
 
     var profilepicobj = document.getElementById("pfp");
     var userobj = document.getElementById("sharetousername").value;
     var innerbox = document.getElementsByClassName("sharerinner");
-
-    //match the user with the credentials and re establish the PFP source 
-    //with profilepicobj.src = "";
 
 }
 

@@ -134,7 +134,7 @@ app.post('/post',(req,res) => {
         console.log(db[parsed['username']].diary[parsed['diarytitle']])
         console.log(!(parsed['diarytitle'] in db[parsed['username']].diary))
         if(!(parsed['drytitle'] in db[parsed['username']].diary)){
-            db[parsed['username']].diary[parsed['diarytitle']] = ["Write text here!"]
+            db[parsed['username']].diary[String(parsed['diarytitle'])] = ["Write text here!"]
             console.log(db[parsed['username']].diary[parsed['diarytitle']])
             var works = true
         }else{

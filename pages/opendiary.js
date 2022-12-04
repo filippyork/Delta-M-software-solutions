@@ -17,7 +17,7 @@ function createNewDiary(){
     $.post(
         url+"?data="+JSON.stringify({
             'action' : 'createnewdict',
-            'diarytitle' : diarytitle, //TODO This variable needs to be defined (victor) idk if it needs to be changed to a seperate one but currently this is the same as the button title variables
+            'diarytitle' : diarytitle,
             'username' : username
         }),response
     )

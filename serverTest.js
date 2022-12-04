@@ -64,7 +64,6 @@ describe ('Testing server functionality', function () {
             successDiaryCreate = false;
         }
 
-
         // call adduser(), add all other users created in this test
         for (var j = 1; j < 1000 && successDiaryAddUser; j++) {
 
@@ -93,7 +92,7 @@ describe ('Testing server functionality', function () {
     it('Test 3: Check if content of all shared diaries is the same as the original', function () {
 
         var sameDiaryContent = true;
-        var canAccessDiary = false;
+        var canAccessDiary = true;
         var i = 1;
 
         // check if diary can be accessed by every user
@@ -107,7 +106,7 @@ describe ('Testing server functionality', function () {
             )
 
             // check if current user can access diary, otherwise set flag to false
-            if (response['titlelist'][1] == 'Diary 1') {
+            if (response['titlelist'][1] != 'Diary 1') {
 
                 canAccessDiary = false;
             }
@@ -122,7 +121,7 @@ describe ('Testing server functionality', function () {
             )
 
             // compare content of shared diary to that of the original
-            if (document.getElementById("editingbox").innerHTML == 'This is first diary') {
+            if (document.getElementById("editingbox").innerHTML != 'This is first diary') {
 
                 sameDiaryContent = false;
             }

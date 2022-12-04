@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var port = 3000
 // must change the setup for diary storage
-var db = {'Admin':{password:'root', diary:{'Admins Diary': '<hr> Hello there </hr>'}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
+var db = {'Admin':{password:'root', diary:{'Admins Diary': ['<hr> Hello there </hr>']}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
 app.post('/post',(req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log("New express client")
@@ -102,7 +102,7 @@ app.post('/post',(req,res) => {
         })
         res.send(jsontext)
     }
-    if(parsed['action'] == 'diaryreturn'){
+    if(parsed['action'] == 'savediary'){
         console.log(parsed['diarydata'])
         db[parsed['username']].diary[parsed['diarytitle']] = parsed['diarydata']
         jsontext = JSON.stringify({
@@ -116,7 +116,7 @@ app.post('/post',(req,res) => {
             'action' : 'createresponse'
         })
         if(db[parsed['username']].diary[parsed['dairytitle']]==null){
-            db[parsed['username']].diary[parsed['diarytitle']] = "Write text here!"
+            db[parsed['username']].diary[parsed['diarytitle']] = ["Write text here!"]
             jsontext['success'] = true
         }else{
             jsontext['success'] = false
@@ -124,6 +124,27 @@ app.post('/post',(req,res) => {
         res.send(jsontext)
         
         
+    }
+    if(parsed['action']=='changepassword'){
+        var changed = false
+        if(db[parsed['username']]!=null){ 
+            if(db[parsed['username']].password == parsed['password']){
+                db[parsed['username']].password = parsed['newpassword']
+                changed = true
+                jsontext = JSON.stringify({
+                    'action' : 'changepasswordresponse',
+                    'successs' : true
+                })
+            }else{
+                console.log("Login failed, wrong password for user")
+                jsontext = JSON.stringify({
+                    'action' : 'changepasswordresponse',
+                    'successs' : false
+                })
+            }
+        }
+        console.log(jsontext)
+        res.send(jsontext)
     }
 }).listen(port)
 console.log("listening on" + port)

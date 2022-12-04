@@ -23,12 +23,9 @@ function changePassword(){
 function response(data,status){
     console.log("im in resposne")
     var response = JSON.parse(data)
-    if(response["action"]=="changepasswordresponse"){
-        if(response['success']){
-            alert("Password successfully changed")
-            //window.location.href = "./index.html"
-        }else{
-            alert("Incorrect Username/Password, please try again")
-        }
+    
+    if(response['action']=="breh"){
+        console.log("hello")
+        alert("hello")
     }
 }

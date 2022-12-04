@@ -7,7 +7,7 @@ function adduser(){
     $.post(url+"?data="+JSON.stringify({
         'action' : 'usershare',
         'username' : username,
-        'shareuser' : $("#addperson").val(),
+        'shareuser' : $("#displayuserheader").text(),
         'diarytitle' : diarytitle
     }),response
     )
@@ -29,16 +29,18 @@ function response(data,status){
     var response = JSON.parse(data)
     console.log(data)
     if(response['action']=='shareresponse'){
+        $("#displayuserheader").html($("#addperson").val())
         if(response['shared']){
             $("#shareduserphoto").attr("src",response['shareduserphoto'])
-            //TODO can add username under photo and make it look nicer, (this neeeds alterations in the server.js file as well under Share Response)
             console.log("displayed user photo")
-            //TODO functionality for confirming the user becomes available (LUCAS)
+            console.log($("#displayuserheader").text())
+            $("#adduserbtn").prop('disabled', false).css('opacity',1)
 
             // make adduser button visible/usable
             // Maybe use a nicer way to display this rather than an alert
         }
         else{
+            $("#adduserbtn").prop('disabled', true).css('opacity',0.5)
             $("#shareduserphoto").attr("src", "./images/profileplaceholer.png")
             console.log("failed to find user")
             alert("failed to find user")

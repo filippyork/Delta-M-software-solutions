@@ -151,7 +151,7 @@ app.post('/post',(req,res) => {
     }
     if(parsed['action']=='changepassword'){
         var changed = false
-        if(db[parsed['username']]!=null){ 
+        if(db[parsed['username']]!=undefined){ 
             if(db[parsed['username']].password == parsed['password']){
                 db[parsed['username']].password = parsed['newpassword']
                 changed = true
@@ -170,5 +170,7 @@ app.post('/post',(req,res) => {
         console.log(jsontext)
         res.send(jsontext)
     }
-}).listen(port)
+    
+    }
+).listen(port)
 console.log("listening on" + port)

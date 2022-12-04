@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var port = 3000
 // must change the setup for diary storage
-var db = {'Admin':{password:'root', diary:{'Admins Diary': ['<hr> Hello there </hr>']}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'}} //db with autofill for admin, pfpimg is pfpimgs/username
+var db = {'Admin':{password:'root', diary:{'Admins Diary': ['<hr> Hello there </hr>']}, imgurl: 'https://i.kym-cdn.com/entries/icons/mobile/000/035/557/Hi_Bingus.jpg'},'joe':{password:'root',diary:{joe:["w"]}}} //db with autofill for admin, pfpimg is pfpimgs/username
 app.post('/post',(req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log("New express client")
@@ -58,10 +58,31 @@ app.post('/post',(req,res) => {
        })
        res.send(jsontext) // sending login request response
     }
+    if(parsed['action']=='usershare'){
+        if(([parsed['shareuser']] in db)){
+            console.log(!(parsed['shareuser']['diarytitle'] in db[parsed['shareuser']].diary))
+            console.log(db[parsed['shareuser']].diary[parsed['diarytitle']])
+            if((db[parsed['shareuser']].diary[parsed['diarytitle']]==undefined)){ // maybe key in obj?
+                console.log(db[parsed['username']].diary[parsed['diarytitle']])
+                console.log(db[parsed['shareuser']].diary[parsed['diarytitle']])
+                db[parsed['shareuser']].diary[parsed['diarytitle']] = db[parsed['username']].diary[parsed['diarytitle']]
+                shared = true
+            }else{
+                shared= false
+            }
+            jsontext = JSON.stringify({
+                'action' : 'shared?',
+                'shared' : shared,
+            })  
+            console.log(jsontext)
+            res.send(jsontext)
+        }
+        
+    }
     // Share Response
     if(parsed['action']=='usercheck'){
-        exists = db[parsed['shareuser']]!=null?true:false;
-        console.log("Username ${parsed['shareuser']} exists: " + exists)
+        exists = parsed['shareuser'] in db?true:false;
+        console.log("Username"+parsed['shareuser'] +"exists: " + exists)
         jsontext = {
             'action' : 'shareresponse',
             'shared' : exists,
@@ -69,13 +90,6 @@ app.post('/post',(req,res) => {
         if(exists){
             jsontext['shareduserphoto']= db[parsed['shareuser']].imgurl
             //TODO add cur users dictionary to share user.
-            if(db[parsed['shareuser']].diary[parsed['diarytitle']]==null){ // maybe key in obj?
-                db[parsed['shareuser']].diary[parsed['diarytitle']] = db[parsed['username']].diary[parsed['diarytitle']]
-            }else{
-                jsontext['shared'] = false
-            }
-            
-            parsed['diarytitle']
 
         }
         jsontext = JSON.stringify(jsontext)
@@ -119,7 +133,7 @@ app.post('/post',(req,res) => {
         console.log(db[parsed['username']].diary[parsed['diarytitle']]==null)
         console.log(db[parsed['username']].diary[parsed['diarytitle']])
         console.log(!(parsed['diarytitle'] in db[parsed['username']].diary))
-        if(!(parsed['diarytitle'] in db[parsed['username']].diary)){
+        if(!(parsed['drytitle'] in db[parsed['username']].diary)){
             db[parsed['username']].diary[parsed['diarytitle']] = ["Write text here!"]
             console.log(db[parsed['username']].diary[parsed['diarytitle']])
             var works = true

@@ -37,6 +37,7 @@ function response(data, status){
             var inputel = document.createElement('input')
             inputel.type = "button"
             inputel.id = holder
+            inputel.value = holder
             inputel.addEventListener('click', function(){toEditing(this)})
             $("#innerbox").append(inputel)
         }

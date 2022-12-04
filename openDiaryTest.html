@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mocha Tests</title>
+</head>
+<body>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+
+    <!-- test the index html file -->
+    <script src="opendiary.js"></script>
+    <script src="server.js"></script>
+
+    <!-- load tests for login -->
+    <script src="tests/openDiaryTest.js"></script>
+    <script>mocha.run()</script>
+
+</body>
+</html>

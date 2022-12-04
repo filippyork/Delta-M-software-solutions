@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mocha Tests</title>
+</head>
+<body>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+
+    <!-- test the server functionality -->
+    <script src="server.js"></script>
+
+    <!-- files that depend on server -->
+    <script src="signup.js"></script>
+    <script src="opendiary.js"></script>
+    <script src="share.js"></script>
+    <script src="textediting.js"></script>
+    
+
+    <!-- load tests for login -->
+    <script src="tests/serverTest.js"></script>
+    <script>mocha.run()</script>
+
+</body>
+</html>

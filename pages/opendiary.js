@@ -82,7 +82,7 @@ function response(data, status){
     }
 }
 
-// MADE WITH MULTIPLE DIARIES IN MIND
+// redirects user to diary editing page
 function toEditing(diarytitle){
     window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
 }

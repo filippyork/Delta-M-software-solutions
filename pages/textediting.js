@@ -15,6 +15,7 @@ window.onload = function (){
 
 $('#editingbox').each(function(){
     this.contentEditable = true;
+    
 });
 
     $.post(
@@ -32,6 +33,10 @@ function response(data, status){
     console.log(data)
     if(response['action']=='diaryreturn'){
         totalpagedata = response['diarydata']
+        document.getElementById("editingbox").innerHTML = totalpagedata[0]
+        for(i=0;i<totalpagedata.length-1;i++){
+            newpage()
+        }
     }
     if(response['action']=='confirmdiarysave'){
         console.log("Saved page data redirecting to goodbye page")
@@ -42,6 +47,8 @@ function response(data, status){
 
 
 function saveButton(){
+    var editingbox = document.getElementById("editingbox");
+    totalpagedata[prevselect-1]=(editingbox.innerHTML)
     $.post(
         url+'?data='+JSON.stringify({
             'action' : 'savediary',
@@ -88,67 +95,36 @@ function sizefunc(value){
 //New page function
 function newpage(){
 
-//store the data as a string
-var editingbox = document.getElementById("editingbox");
+    //increment page counter
+    pagecounter = pagecounter + 1
 
-//the ^ means end of a page
-totalpagedata = totalpagedata + editingbox.innerHTML + "^" + pagecounter.toString();
+   //create new option in pageselect
+   var pageselect = document.getElementById("page-select");
+   var newoption = document.createElement("option");
+   newoption.setAttribute("value", pagecounter);
+   newoption.innerHTML = pagecounter;
 
-
-
-//remove text
-editingbox.innerHTML = "";
-
-
-
-     //increent page counter
-     pagecounter = pagecounter + 1
-
-    //create new option in pageselect
-    var pageselect = document.getElementById("page-select");
-    var newoption = document.createElement("option");
-    newoption.setAttribute("value", pagecounter);
-    newoption.innerHTML = pagecounter;
-
-    pageselect.appendChild(newoption);
-
-
-    
-
-//add a blank new page to the total amount of pages. save previous page
-
+   pageselect.appendChild(newoption);
 
 }
 
-function pagefunc(value){
+var prevselect = 1
+function pagefunc(currentpage){
 
-var editingbox = document.getElementById("editingbox");    
-
-var v = value - 1;
-
-var prevtemp = totalpagedata.indexOf(v.toString())
-
-var value2 = "^"+value.toString();
-
-var temp = totalpagedata.indexOf(value2.toString());
-
-if(temp == -1){
-
-    editingbox.innerHTML = ""
-    
-} else if (temp != -1) {
-
-    editingbox.innerHTML = ""
-
-for(var i = prevtemp+1; i <= temp-1; i = i + 1){
+   var editingbox = document.getElementById("editingbox");
+   totalpagedata[prevselect-1] = editingbox.innerHTML
+   console.log(totalpagedata)
+   editingbox.innerHTML = totalpagedata[currentpage-1]
 
 
-    editingbox.innerHTML = editingbox.innerHTML + totalpagedata[i]
+   if(editingbox.innerHTML == "undefined"){
+
+       editingbox.innerHTML = ""
+   }
 
 
-
+//editingbox.innerHTML = totalpagedata[value+1]
+   prevselect = currentpage
 }
 
-}
 
-}

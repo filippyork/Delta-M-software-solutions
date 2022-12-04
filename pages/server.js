@@ -69,7 +69,7 @@ app.post('/post',(req,res) => {
         if(exists){
             jsontext['shareduserphoto']= db[parsed['shareuser']].imgurl
             //TODO add cur users dictionary to share user.
-            if(db[parsed['shareuser']].diary[parsed['diarytitle']]==null){
+            if(db[parsed['shareuser']].diary[parsed['diarytitle']]==null){ // maybe key in obj?
                 db[parsed['shareuser']].diary[parsed['diarytitle']] = db[parsed['username']].diary[parsed['diarytitle']]
             }else{
                 jsontext['shared'] = false
@@ -95,11 +95,14 @@ app.post('/post',(req,res) => {
     }
     if(parsed['action']=='diaryfetch'){
         console.log( parsed['diarytitle'])
+        console.log(db)
+        console.log(db[parsed['username']].diary[parsed['diarytitle']])
         jsontext = JSON.stringify({
             'action' : 'diaryreturn',
             'diarydata' : db[parsed['username']].diary[parsed['diarytitle']]
 
         })
+        console.log(jsontext)
         res.send(jsontext)
     }
     if(parsed['action'] == 'savediary'){
@@ -112,17 +115,24 @@ app.post('/post',(req,res) => {
     }
     if(parsed['action']=='createnewdict'){
         console.log(parsed['title'])
-        jsontext = JSON.stringify({
-            'action' : 'createresponse'
-        })
-        if(db[parsed['username']].diary[parsed['dairytitle']]==null){
-            db[parsed['username']].diary[parsed['diarytitle']] = ["Write text here!"]
-            jsontext['success'] = true
-        }else{
-            jsontext['success'] = false
-        }
-        res.send(jsontext)
         
+        console.log(db[parsed['username']].diary[parsed['diarytitle']]==null)
+        console.log(db[parsed['username']].diary[parsed['diarytitle']])
+        console.log(!(parsed['diarytitle'] in db[parsed['username']].diary))
+        if(!(parsed['diarytitle'] in db[parsed['username']].diary)){
+            db[parsed['username']].diary[parsed['diarytitle']] = ["Write text here!"]
+            console.log(db[parsed['username']].diary[parsed['diarytitle']])
+            var works = true
+        }else{
+            var works = false
+        }
+        jsontext = JSON.stringify({
+            'action' : 'createresponse',
+            'success' : works
+        })
+        console.log(jsontext)
+        console.log(db)
+        res.send(jsontext)
         
     }
     if(parsed['action']=='changepassword'){

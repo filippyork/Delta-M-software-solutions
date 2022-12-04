@@ -1,6 +1,3 @@
-// TODO: debug; remove definiton when done
-var titlelist;
-var diarytitle;
 const username = new URLSearchParams(window.location.search).get('username');
 var url = "http://localhost:3000/post";
 window.onload = function() {
@@ -11,6 +8,23 @@ window.onload = function() {
         }), response
     );
 
+}
+
+function createNewDiary() {
+    diarytitle = prompt("What would you like your Diary title to be?")
+    console.log(diarytitle)
+    $.post(
+        url+"?data="+JSON.stringify({
+            'action' : 'createnewdict',
+            'diarytitle' : diarytitle, //TODO This variable needs to be defined (victor) idk if it needs to be changed to a seperate one but currently this is the same as the button title variables
+            'username' : username
+        }),response
+    )
+}
+
+// TODO: create buttons for listing diary entries
+function loadButtons() {
+    
     // search for diaries created by current user
     for (i = 0; i < titlelist.length; i++) {
     
@@ -36,52 +50,33 @@ window.onload = function() {
         a.appendChild(diaryButton);
     }
 
-    // create a new diary button
-    var diaryName = document.createElement('div');
-    var a = document.getElementById('innerbox');
-    a.appendChild(diaryName);
-    
-    var diaryButton = document.createElement('BUTTON');
-    var diarytext = document.createTextNode("Create a New Diary");
-    diaryButton.className = "fcc-btn";
-    diaryButton.appendChild(diarytext);
-                
-    // upon clicking this button, create a new diary
-    diaryButton.setAttribute('onclick', 'newDiary()');
-    
-    // create button on div
-    a.appendChild(diaryButton);
-        
-}
-
-function noExistingDiary(diarytitle){
-    $.post(
-        url+"?data="+JSON.stringify({
-            'action' : 'createnewdict',
-            'diarytitle' : diarytitle,
-            'username' : username
-        }),response
-    )
 }
 
 function response(data, status){
-    var response = JSON.parse(data)
-    console.log(data)
-    if (response['action']=='titlereturn') {
-        titlelist = response['titlelist']
-        console.log(titlelist)
-        //titlelist is the list of titles recieved from the server
-    }
     
-    if (response['action']=='createresponse') {
-        if (response['success']) {
+    var response = JSON.parse(data)
+    console.log("Recieved data " + data)
+    if(response['action']=='titlereturn'){
+        
+        //titlelist is the list of titles recieved from the server.
+        for(i=0;i<response['titlelist'].length;i++){
+           
+            var holder=response['titlelist'][i]
+            console.log(holder)
+            
+            var inputel = document.createElement('input')
+            inputel.type = "button"
+            inputel.id = holder
+            inputel.addEventListener('click', function(){toEditing(this)})
+            $("#innerbox").append(inputel)
+        }
+
+    }
+    if(response['action']=='createresponse'){
+        if(response['success']){
             window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
         }else{
-            // TODO: check if diary name is unique to titlelist
-            for (i = 0; i < titlelist.length; i++) {
-                if (diarytitle == titlelist[i])
-                alert("Diary name already exists!")
-            }
+            alert("Error Diary name already exists!") //temporary
         }
         
     }
@@ -89,47 +84,7 @@ function response(data, status){
 
 // redirects user to diary editing page
 function toEditing(diarytitle){
-    window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
-}
-
-// create a new diary
-function newDiary() {
-
-    var uniqueDiary = true;
-
-    // check if titlelist is empty
-    if (titlelist.length == 0) {
-        
-        // prompt user to enter title
-        diarytitle = prompt("Enter a title:");
-
-        // create new diary, send title of first page
-        noExistingDiary(diarytitle);
-
-        // redirect user to diary editing page
-        toEditing(diarytitle);
-    }
-
-    // TODO: prevent user from creating a diary with the same title as one that already exists
-    else {
-
-        // prompt user to enter title
-        diarytitle = prompt("Enter a title:");
-
-        // check if diary name is unique to titlelist
-        for (i = 0; i < titlelist.length && uniqueDiary; i++) {
-
-            console(titlelist[i]);
-            
-            if (diarytitle == titlelist[i]){
-                alert("Diary name already exists!");
-                uniqueDiary = false;
-            }
-        }
-
-        // redirect user to diary editing page
-        if (uniqueDiary) 
-            toEditing(diarytitle);
-    }
-
+    //TODO diary title needs to be defined with the buttonpress as the diary that was chosen
+    console.log(titlenamer.id)
+    window.location.href = "./diaryeditting.html?diarytitle="+titlenamer.id +"&username=" + username
 }

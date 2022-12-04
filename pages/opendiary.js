@@ -1,3 +1,4 @@
+var titlelist = ['diary1'];
 var diarytitle;
 const username = new URLSearchParams(window.location.search).get('username');
 var url = "http://localhost:3000/post";
@@ -8,6 +9,48 @@ window.onload = function() {
             'username' : username
         }), response
     );
+
+    // search for diaries created by current user
+    for (i = 0; i < titlelist.length; i++) {
+    
+        var diaryName = document.createElement('div');
+        var a = document.getElementById('innerbox');
+                
+        a.appendChild(diaryName);
+    
+        // set current diary title
+        diarytitle = titlelist[i];
+    
+        // creates a button to redirect to selected page
+        var diaryButton = document.createElement('BUTTON');
+        var diarytext = document.createTextNode(diarytitle);
+        diaryButton.className = "fcc-btn";
+        diaryButton.id = diarytitle;
+        diaryButton.appendChild(diarytext);
+                
+        // when this button is clicked, send user to corresponding page
+        diaryButton.setAttribute('onclick', 'toEditing(diarytitle)');
+        
+        // create button on div
+        a.appendChild(diaryButton);
+    }
+
+    // create a new diary button
+    var diaryName = document.createElement('div');
+    var a = document.getElementById('innerbox');
+    a.appendChild(diaryName);
+    
+    var diaryButton = document.createElement('BUTTON');
+    var diarytext = document.createTextNode("Create a New Diary");
+    diaryButton.className = "fcc-btn";
+    diaryButton.appendChild(diarytext);
+                
+    // upon clicking this button, create a new diary
+    diaryButton.setAttribute('onclick', 'newDiary()');
+    
+    // create button on div
+    a.appendChild(diaryButton);
+        
 }
 
 function noExistingDiary(diarytitle){
@@ -21,65 +64,27 @@ function noExistingDiary(diarytitle){
 }
 
 function response(data, status){
-    
-    var response = JSON.parse(data);
-    console.log(data);
-
+    var response = JSON.parse(data)
+    console.log(data)
     if (response['action']=='titlereturn') {
-        
+        titlelist += response['titlelist']
+        console.log(titlelist)
         //titlelist is the list of titles recieved from the server
-        titlelist = response['titlelist'];
-        console.log(titlelist);
     }
     
     if (response['action']=='createresponse') {
-        
         if (response['success']) {
-            window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle + "&username=" + username;
-        }
-        
-        else {
-            alert("Diary name already exists!");
+            window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
+        }else{
+            alert("Diary name already exists!")
         }
         
     }
-}
-
-// creates buttons for each diary the current user has created
-function diaryButtons() {
-    
-    /* if no entries exist for current user (e.g. new user), add a new diary option */
-    if (titlelist.length == 0) {
-        var diaryButton = document.createElement('BUTTON');
-        var diarytext = document.createTextNode("Create a New Diary");
-        diaryButton.appendChild(diarytext);
-        
-        // upon clicking this button, create a new diary
-        diaryButton.onclick = (newDiary);
-
-    }
-
-    else {
-
-        for (username in titlelist) {
-            // creates a button to redirect to selected page
-            var diaryButton = document.createElement('BUTTON');
-            var diarytext = document.createTextNode(diarytitle);
-            diaryButton.appendChild(diarytext);
-            diaryButton.id = diarytitle;
-        
-            // when this button is clicked, send user to corresponding page
-            diaryButton.onclick = toEditing(diarytitle);    
-
-        }
-
-    }
-
 }
 
 // MADE WITH MULTIPLE DIARIES IN MIND
 function toEditing(diarytitle){
-    window.location.href = "./diaryeditting.html?diarytitle=" + diarytitle + "&username=" + username;
+    window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
 }
 
 // create a new diary if the person does not have one

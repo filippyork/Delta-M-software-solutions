@@ -1,4 +1,3 @@
-var diarytitle = 'Admins Diary' //must be removed
 const username = new URLSearchParams(window.location.search).get('username')
 var url ="http://localhost:3000/post"
 window.onload = function() {
@@ -8,13 +7,17 @@ window.onload = function() {
             'username' : username
         }), response
     );
+
 }
 
-function noExistingDiary(){
+
+function createNewDiary(){
+    diarytitle = prompt("What would you like your Diary title to be?")
+    console.log(diarytitle)
     $.post(
         url+"?data="+JSON.stringify({
             'action' : 'createnewdict',
-            'title' : diarytitle, //TODO This variable needs to be defined (victor) idk if it needs to be changed to a seperate one but currently this is the same as the button title variables
+            'diarytitle' : diarytitle, //TODO This variable needs to be defined (victor) idk if it needs to be changed to a seperate one but currently this is the same as the button title variables
             'username' : username
         }),response
     )
@@ -22,27 +25,37 @@ function noExistingDiary(){
 
 function response(data, status){
     var response = JSON.parse(data)
-    console.log(data)
+    console.log("Recieved data " + data)
     if(response['action']=='titlereturn'){
-        titlelist = response['titlelist']
-        console.log(titlelist)
         //titlelist is the list of titles recieved from the server.
+        for(i=0;i<response['titlelist'].length;i++){
+            var holder=response['titlelist'][i]
+            console.log(holder)
+            /*var $newbutton = $("<button>")
+            $newbutton.on('click',function() {toEditing(holder)})
+            $newbutton.html(response['titlelist'][i])*/
+            var inputel = document.createElement('input')
+            inputel.type = "button"
+            inputel.id = holder
+            inputel.addEventListener('click', function(){toEditing(this)})
+            $("#innerbox").append(inputel)
+        }
     }
     if(response['action']=='createresponse'){
         if(response['success']){
             window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
         }else{
-            //TODO (Victor) functionality if diary name already exists (client side)
-            alert("Diary name already exists!") //temporary
+            alert("Error Diary name already exists!") //temporary
         }
         
     }
 }
 
 // MADE WITH MULTIPLE DIARIES IN MIND
-function toEditing(){
+function toEditing(titlenamer){
     //TODO diary title needs to be defined with the buttonpress as the diary that was chosen
-    window.location.href = "./diaryeditting.html?diarytitle="+diarytitle +"&username=" + username
+    console.log(titlenamer.id)
+    window.location.href = "./diaryeditting.html?diarytitle="+titlenamer.id +"&username=" + username
 }
 //TODO for viewing mutliple 
 
